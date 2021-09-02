@@ -20,7 +20,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: 'refs/pull/${{ github.event.number }}/merge'
+          ref: 'refs/pull/1/merge'
       - name: Set JAVA_HOME
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
