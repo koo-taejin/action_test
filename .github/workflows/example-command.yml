@@ -19,8 +19,6 @@ jobs:
           issue-type: pull-request
       - name: Set up JDK 7
         uses: actions/checkout@v2
-        env:
-          GITHUB_CONTEXT: ${{ toJSON(github) }}
         with:
           java-version: 7
       - name: Set JAVA_HOME
@@ -32,7 +30,9 @@ jobs:
           echo "$GITHUB_HEAD_REF"
           echo "$github.head_ref"
           echo "$github.base_ref"
-          echo "$GITHUB_CONTEXT"
+      - name: Dump GitHub context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github) }}
       - name: Dump job context
         env:
           JOB_CONTEXT: ${{ toJSON(job) }}
