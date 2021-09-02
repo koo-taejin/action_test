@@ -28,4 +28,8 @@ jobs:
           echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
           echo "$GITHUB_HEAD_REF"
+          echo "$github.head_ref"
+          echo "$github.base_ref"
+          echo "$GITHUB_HEAD_REF"
+          
           ls -alR
