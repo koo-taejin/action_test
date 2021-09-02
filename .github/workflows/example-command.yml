@@ -36,6 +36,10 @@ jobs:
           echo "=========="
       - name: Checkout
         uses: actions/checkout@v2
+      - name: Dump GitHub pull request context
+        env:
+          GITHUB_CONTEXT: ${{ toJSON(github.event.pull_request) }}
+        run: echo "$GITHUB_CONTEXT"
       - name: Dump GitHub event context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github.event) }}
