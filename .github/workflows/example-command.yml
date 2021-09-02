@@ -17,20 +17,24 @@ jobs:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray
           issue-type: pull-request
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: 'refs/pull/${{github.event.pull_request.number}}/merge'
       - name: Set JAVA_HOME
+        env:
+          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER1: ${{ github.event.pull_request.number }}
+          PR_NUMBER2: ${{ github.event.issue.number }}
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
           echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
           echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
-          echo github.event.number = ${{ github.event.number  }}
-          echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
-          echo github.event.issue.number = ${{ github.event.issue.number }}
+          echo github.event.number = ${{ PR_NUMBER }}
+          echo github.event.pull_request.number = ${{ PR_NUMBER1 }}
+          echo github.event.issue.number = ${{ PR_NUMBER2 }}
           ls
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'refs/pull/${{ PR_NUMBER1 }}/merge'
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
