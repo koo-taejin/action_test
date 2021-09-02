@@ -21,6 +21,10 @@ jobs:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray
           issue-type: pull-request
+      - name: Checkout
+        uses: actions/checkout@v2
+        with:
+          ref: 'refs/pull/${{ env.PR_N }}/merge'
       - name: Set JAVA_HOME
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
@@ -35,10 +39,6 @@ jobs:
           echo "$PR_P"
           ls
           echo "=========="
-      - name: Checkout
-        uses: actions/checkout@v2
-        with:
-          ref: 'refs/pull/${{ env.PR_N }}/merge'
       - name: Dump GitHub pull request context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github.event.pull_request) }}
