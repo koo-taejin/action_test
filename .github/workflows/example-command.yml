@@ -17,19 +17,17 @@ jobs:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray
           issue-type: pull-request
-      - name: Set up JDK 7
+      - name: Checkout
         uses: actions/checkout@v2
         with:
-          java-version: 7
+          ref: ${{ github.event.pull_request.head.sha }}
       - name: Set JAVA_HOME
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
           echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
           echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
-          echo "$GITHUB_HEAD_REF"
-          echo "$github.head_ref"
-          echo "$github.base_ref"
+          ls
       - name: Dump GitHub context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github) }}
