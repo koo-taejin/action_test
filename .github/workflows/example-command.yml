@@ -33,6 +33,7 @@ jobs:
           echo "$PR_NUMBER"
           echo "$PR_N"
           echo "$PR_P"
+          ls
           echo "=========="
       - name: Checkout
         uses: actions/checkout@v2
