@@ -27,9 +27,9 @@ jobs:
           echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
           echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
-          echo github.event.number = ${{ PR_NUMBER }}
-          echo github.event.pull_request.number = ${{ PR_N }}
-          echo github.event.issue.number = ${{ PR_P }}
+          echo github.event.number = ${{ env.PR_NUMBER }}
+          echo github.event.pull_request.number = ${{ env.PR_N }}
+          echo github.event.issue.number = ${{ env.PR_P }}
           ls
       - name: Checkout
         uses: actions/checkout@v2
