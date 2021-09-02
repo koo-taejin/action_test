@@ -14,3 +14,13 @@ jobs:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
           reaction-type: hooray
           issue-type: pull-request
+      - name: Set up JDK 7
+        uses: actions/checkout@v2
+        with:
+          java-version: 7
+      - name: Set JAVA_HOME
+        run: |
+          echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
+          echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
+          echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
+          echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
