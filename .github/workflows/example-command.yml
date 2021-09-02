@@ -8,6 +8,10 @@ on:
 jobs:
   example:
     runs-on: ubuntu-latest
+    env:
+      PR_NUMBER: ${{ github.event.client_payload.github.payload.repository.full_name }}
+      PR_N: ${{ github.event.client_payload.github.payload.issue.number }}
+      PR_P: ${{ github.event.issue.number }}
     steps:
       - name: Add reaction
         uses: peter-evans/create-or-update-comment@v1
@@ -18,10 +22,6 @@ jobs:
           reaction-type: hooray
           issue-type: pull-request
       - name: Set JAVA_HOME
-        env:
-          PR_NUMBER: ${{ github.event.client_payload.github.payload.repository.full_name }}
-          PR_N: ${{ github.event.pull_request.number }}
-          PR_P: ${{ github.event.issue.number }}
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
           echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
@@ -36,6 +36,8 @@ jobs:
           echo "=========="
       - name: Checkout
         uses: actions/checkout@v2
+        with:
+          ref: 'refs/pull/${{ env.PR_N }}/merge'
       - name: Dump GitHub pull request context
         env:
           GITHUB_CONTEXT: ${{ toJSON(github.event.pull_request) }}
