@@ -30,7 +30,10 @@ jobs:
           echo github.event.number = ${{ env.PR_NUMBER }}
           echo github.event.pull_request.number = ${{ env.PR_N }}
           echo github.event.issue.number = ${{ env.PR_P }}
-          ls
+          echo "$PR_NUMBER"
+          echo "$PR_N"
+          echo "$PR_P"
+          echo "=========="
       - name: Checkout
         uses: actions/checkout@v2
       - name: Dump GitHub context
