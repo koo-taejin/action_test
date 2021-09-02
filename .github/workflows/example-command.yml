@@ -19,7 +19,7 @@ jobs:
           issue-type: pull-request
       - name: Set JAVA_HOME
         env:
-          PR_NUMBER: ${{ github.event.number }}
+          PR_NUMBER: ${{ github.event.client_payload.github.payload.repository.full_name }}
           PR_N: ${{ github.event.pull_request.number }}
           PR_P: ${{ github.event.issue.number }}
         run: |
