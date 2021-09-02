@@ -20,13 +20,16 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
         with:
-          ref: 'refs/pull/:prNumber/merge'
+          ref: 'refs/pull/${{github.event.pull_request.number}}/merge'
       - name: Set JAVA_HOME
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
           echo "JAVA_8_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
           echo "JAVA_9_HOME=$JAVA_HOME_9_0_7_X64" >> $GITHUB_ENV
           echo "JAVA_HOME=$JAVA_HOME_8_X64" >> $GITHUB_ENV
+          echo github.event.number = ${{ github.event.number  }}
+          echo github.event.pull_request.number = ${{ github.event.pull_request.number }}
+          echo github.event.issue.number = ${{ github.event.issue.number }}
           ls
       - name: Dump GitHub context
         env:
