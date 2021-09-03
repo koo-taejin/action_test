@@ -80,4 +80,13 @@ jobs:
       - name: Check on success
         if: steps.action_name_test11.outcome == 'success'
         run: echo "success"
-        
+      - name: Create URL to the run output
+        id: vars
+        run: echo ::set-output name=run-url::https://github.com/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID
+      - name: Update comment
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
+          body: |
+            > result [Click here to see the command run output][1]
+            [1]: ${{ steps.vars.outputs.run-url }}  
