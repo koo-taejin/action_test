@@ -74,3 +74,10 @@ jobs:
         env:
           MATRIX_CONTEXT: ${{ toJSON(matrix) }}
         run: echo "$MATRIX_CONTEXT"
+      - name: Check on failures
+        if: ((${{ steps.action_name_test11.outcome }} == 'failure')
+        run: echo "fail"
+      - name: Check on success
+        if: ((${{ steps.action_name_test11.outcome }} != 'failure')
+        run: echo "success"
+        
