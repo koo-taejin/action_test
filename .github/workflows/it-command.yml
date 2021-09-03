@@ -1,9 +1,7 @@
-name: example-command
+name: it-command
 on:
   repository_dispatch:
-    types: [example-command]
-  pull_request:
-    branches: [ master ]
+    types: [it-command]
     
 jobs:
   example:
