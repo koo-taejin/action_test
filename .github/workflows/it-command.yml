@@ -25,7 +25,7 @@ jobs:
           ref: 'refs/pull/${{ env.PR_N }}/merge'
       - name: Fail Test
         id: action_name_test11
-        run: mvn test
+        run: ls
         continue-on-error: true
       - name: Set JAVA_HOME
         run: |
