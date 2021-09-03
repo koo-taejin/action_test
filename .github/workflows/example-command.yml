@@ -38,6 +38,7 @@ jobs:
           echo "$PR_N"
           echo "$PR_P"
           ls
+          echo "${{ github.event.client_payload.slash_command.args.all }}"
           echo "=========="
       - name: Dump GitHub pull request context
         env:
