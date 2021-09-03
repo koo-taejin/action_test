@@ -24,7 +24,9 @@ jobs:
         with:
           ref: 'refs/pull/${{ env.PR_N }}/merge'
       - name: Fail Test
+        id: action_name_test11
         run: mvn test
+        continue-on-error: true
       - name: Set JAVA_HOME
         run: |
           echo "JAVA_7_HOME=$JAVA_HOME_7_0_312_X64" >> $GITHUB_ENV
