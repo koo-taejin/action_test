@@ -12,7 +12,6 @@ jobs:
       PR_P: ${{ github.event.issue.number }}
     steps:
       - name: Update success comment
-        if: steps.action_name_test11.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v1
         with:
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
