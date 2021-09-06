@@ -11,14 +11,13 @@ jobs:
       PR_N: ${{ github.event.client_payload.github.payload.issue.number }}
       PR_P: ${{ github.event.issue.number }}
     steps:
-      - name: Add reaction
+      - name: Update success comment
+        if: steps.action_name_test11.outcome == 'success'
         uses: peter-evans/create-or-update-comment@v1
         with:
-          token: ${{ secrets.PAT }}
-          repository: ${{ github.event.client_payload.github.payload.repository.full_name }}
           comment-id: ${{ github.event.client_payload.github.payload.comment.id }}
-          reaction-type: hooray
-          issue-type: pull-request
+          body: |
+            > Action has been started. [Click here to see the action](${{ steps.vars.outputs.run-url }})
       - name: Checkout
         uses: actions/checkout@v2
         with:
